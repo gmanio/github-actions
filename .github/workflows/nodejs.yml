@@ -23,5 +23,7 @@ jobs:
       run: npm ci
     - name: build app
       run: npm run build
+    - name: deploy app
+      run: npm run deploy
       env:
         CI: true
