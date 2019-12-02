@@ -1,22 +1,23 @@
 {
   "name": "github-actions",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "sample for github actions",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build src/index.html"
+  },
+  "author": "gmanPark",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gmanio/github-actions/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gmanio/github-actions.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gmanio/github-actions/issues"
-  },
+  "keywords": [
+    "github-actions"
+  ],
   "homepage": "https://github.com/gmanio/github-actions#readme",
   "dependencies": {
     "@types/react": "^16.9.13",
@@ -24,5 +25,9 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "typescript": "^3.7.2"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.1.1",
+    "parcel-bundler": "^1.12.4"
   }
 }
