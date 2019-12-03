@@ -17,8 +17,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: git config
-      run : git config --global user.name "gmanio" | git config --global user.password "10637aba00b9a435d65c1e18a448aa188cee1ca3"
     - name: npm install, build, and test
       run: npm install
     - name: npm install, build, and test
@@ -26,6 +24,6 @@ jobs:
     - name: build app
       run: npm run build
     - name: deploy app
-      run: npm run deploy
+      run: git config --global user.name "gmanio" | git config --global user.password "10637aba00b9a435d65c1e18a448aa188cee1ca3" | npm run deploy
       env:
         CI: true
