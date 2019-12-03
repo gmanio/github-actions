@@ -24,6 +24,6 @@ jobs:
     - name: build app
       run: npm run build
     - name: deploy app
-      run: git config --global user.name "jiman.park" | git config --global user.email "jiman.park@woowahan.com" | git config --global user.password "10637aba00b9a435d65c1e18a448aa188cee1ca3" | npm run deploy
+      run: git config --global user.name "jiman.park" && git config --global user.email "jiman.park@woowahan.com" && git config --global user.password "10637aba00b9a435d65c1e18a448aa188cee1ca3" && npm run deploy
       env:
         CI: true
