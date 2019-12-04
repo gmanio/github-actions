@@ -23,6 +23,8 @@ jobs:
       run: npm ci
     - name: build app
       run: npm run build
+    - name: Checkout
+      uses: actions/checkout@v1
     - name: Build and Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
