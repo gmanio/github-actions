@@ -17,20 +17,15 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
+    - name: npm install
       run: npm install
-    - name: npm install, build, and test
-      run: npm ci
     - name: build app
       run: npm run build
-    - name: Checkout
-      uses: actions/checkout@v1
-    - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BASE_BRANCH: master # The branch the action should deploy from.
-        BRANCH: gh-pages # The branch the action should deploy to.
-        FOLDER: dist # The folder the action should deploy.
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v2.5.0
       env:
-        CI: true
+      ACTIONS_DEPLOY_KEY: ${{ secrets.ACCESS_TOKEN }}
+      # PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+      # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PUBLISH_BRANCH: gh-pages
+      PUBLISH_DIR: ./dist
