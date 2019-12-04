@@ -23,7 +23,14 @@ jobs:
       run: npm ci
     - name: build app
       run: npm run build
-    - name: deploy app
-      run: git remote set-url origin https://github.com/gmanio/github-actions.git && git config --global user.name "jiman.park" && git config --global user.email "jiman.park@woowahan.com" && git config --global user.password "10637aba00b9a435d65c1e18a448aa188cee1ca3" && npm run deploy
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Build and Deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BASE_BRANCH: master # The branch the action should deploy from.
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: dist # The folder the action should deploy.
       env:
         CI: true
