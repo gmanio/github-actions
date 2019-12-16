@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "sample for github actions",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build src/index.html",
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
     "deploy": "gh-pages -d dist"
   },
   "author": "gmanPark",
@@ -21,13 +22,18 @@
   ],
   "homepage": "https://github.com/gmanio/github-actions#readme",
   "dependencies": {
+    "@types/node": "^12.12.17",
     "@types/react": "^16.9.13",
     "@types/react-dom": "^16.9.4",
+    "babel-plugin-styled-components": "^1.10.6",
+    "next": "^9.1.5",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "styled-components": "^4.4.1",
     "typescript": "^3.7.2"
   },
   "devDependencies": {
+    "@types/styled-components": "^4.4.1",
     "gh-pages": "^2.1.1",
     "parcel-bundler": "^1.12.4"
   }
