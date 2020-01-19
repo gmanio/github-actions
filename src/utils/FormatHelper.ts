@@ -1,9 +1,5 @@
 
 export default class FormatHelper {
-  public static test = async (query: string) => {
-    return 'test';
-  }
-
   public static absoluteUrl (req: any, setLocalhost?: boolean) {
     let protocol = 'https:/';
     let host = req ? req.headers.host : window.location.hostname;

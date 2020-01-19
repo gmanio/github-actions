@@ -1,7 +1,3 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import DbHelper from '../../utils/DbHelper';
+import CommentsApi from 'src/api/comments';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const queryResponse = await DbHelper.query('SELECT count(*) from employees');
-  await res.json(queryResponse);
-}
+export default CommentsApi;

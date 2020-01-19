@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "sample for github actions",
   "scripts": {
-    "dev": "next -p 5000",
-    "build": "next build",
+    "dev": "NODE_PATH=. next",
+    "build": "NODE_PATH=. next build",
     "start": "next start",
     "deploy": "gh-pages -d dist"
   },
