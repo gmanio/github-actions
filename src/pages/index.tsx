@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import fetch from 'isomorphic-unfetch';
 import { NextPageContext } from 'next';
-import FormatHelper from '../utils/FormatHelper';
+import fetch from 'isomorphic-unfetch';
+import FormatHelper from 'src/utils/FormatHelper';
 
 const Title = styled.h1`
   color: red;
