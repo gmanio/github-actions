@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { NextPageContext } from 'next';
 import fetch from 'isomorphic-unfetch';
 import FormatHelper from 'src/utils/FormatHelper';
+import { loadGetInitialProps } from 'next/dist/next-server/lib/utils';
 
 // function onSignIn (googleUser) {
 //   const profile = googleUser.getBasicProfile();
@@ -12,18 +13,58 @@ import FormatHelper from 'src/utils/FormatHelper';
 //   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 // }
 
+function signOut () {
+  var auth2 = window.gapi.auth2.getAuthInstance();
+  auth2.signOut().then(function () {
+    console.log('User signed out.');
+  });
+}
+
 const User = (props: any) => {
+  const handleSuccess = () => {
+    debugger
+  };
+
+  const handleFailure = () => {
+    debugger;
+  }
+  const [auth, setAuth] = React.useState();
+  const handleAuth = () => {
+    const auth = window.gapi.auth2
+    console.log(auth);
+    debugger;
+  };
   React.useEffect(() => {
-    if(window.gapi){
+    if (window.gapi) {
       window.gapi.load('auth2', () => {
-        console.log('loaded');
+        auth.getAuthInstance().currentUser.get().getBasicProfile().getName()
+
+        // const gauth = window.gapi.auth2.init({
+        //   client_id: '328243791628-t7635a16s44jptmj023e1ntf6auq0q5u.apps.googleusercontent.com',
+        //   scope: 'profile'
+        // });
+        // setAuth(gauth);
       });
     }
-
   }, []);
+
+  // React.useEffect(() => {
+  //   if (auth) {
+  //     console.log(auth.isSignedIn.get());
+  //   }
+  //   //   const googleUser = auth.currentUser.listen(() => {
+  //   //     debugger;
+  //   //   });
+  //   //   console.log(googleUser);
+  //   //   debugger;
+  //   // }
+  // }, [auth]);
+
   return (
     <>
-      User
+      <div className="g-signin2" data-onsuccess={handleSuccess}></div>
+      <button onClick={handleAuth}>custom login</button>
+      <div className={'g-signOut2'}>signOut</div>
     </>
   )
 };
