@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { NextPageContext } from 'next';
 import fetch from 'isomorphic-unfetch';
 import FormatHelper from 'src/utils/FormatHelper';
+import User from 'src/containers/user';
 
 const Title = styled.h1`
   color: red;
@@ -21,6 +22,7 @@ const IndexPage = (props: any) => {
 
   return (
     <>
+      <User/>
       <Title>{title}</Title>
       <button onClick={handleFetchData}>fetch</button>
       <span>{JSON.stringify(props.response)}</span>
