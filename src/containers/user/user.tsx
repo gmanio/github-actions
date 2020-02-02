@@ -14,9 +14,12 @@ const User = (props: any) => {
   };
   React.useEffect(() => {
     if (window.gapi) {
-      window.gapi.load('auth2', () => {
+      window.gapi.load('auth2', async () => {
         const gAuth = window.gapi.auth2;
-        setIsLogin(gAuth.getAuthInstance().isSignedIn.get());
+        await gAuth.init();
+        if (gAuth.getAuthInstance()) {
+          setIsLogin(gAuth.getAuthInstance().isSignedIn.get());
+        }
       });
     }
   }, []);
@@ -24,7 +27,9 @@ const User = (props: any) => {
   React.useEffect(() => {
     if (isLogin) {
       const gAuth = window.gapi.auth2;
-      setCurrentUser(gAuth.getAuthInstance().currentUser.get().getBasicProfile())
+      const currentUser = gAuth.getAuthInstance().currentUser.get().getBasicProfile();
+      debugger;
+      setCurrentUser(currentUser);
     }
   }, [isLogin]);
 
@@ -33,6 +38,7 @@ const User = (props: any) => {
     await gAuth.getAuthInstance().signOut();
     setIsLogin(gAuth.getAuthInstance().isSignedIn.get());
   };
+
   return (
     <>
       <div>
@@ -40,8 +46,11 @@ const User = (props: any) => {
       </div>
       <button onClick={handleAuth}>custom login</button>
       <div className={'g-signOut2'} onClick={handleSignOut}>signOut</div>
-      {isLogin && (<Styled.WrapperUser>
+      {isLogin && currentUser && (<Styled.WrapperUser>
           <span>{currentUser.getName()}</span>
+          <span>{currentUser.getEmail()}</span>
+          <span>{currentUser.getId()}</span>
+          <img src={currentUser.getImageUrl()} alt="profile"/>
         </Styled.WrapperUser>
       )}
     </>
