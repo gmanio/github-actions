@@ -38,7 +38,7 @@ export default class MyDocument extends Document {
       <body>
       <Main/>
       <NextScript/>
-      <script src="https://apis.google.com/js/platform.js" async defer/>
+      <script src="https://apis.google.com/js/platform.js?onload=init" async defer/>
       </body>
       </html>
     )

@@ -1,25 +1,23 @@
 import React from 'react';
 import * as Styled from './style';
 
-const User = (props: any) => {
+type Props = {};
+
+const User = (props: Props) => {
   const [isLogin, setIsLogin] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState();
 
   const handleAuth = async () => {
     const gAuth = window.gapi.auth2;
     const response = await gAuth.getAuthInstance().signIn();
-    console.log(response);
     setCurrentUser(gAuth.getAuthInstance().currentUser.get().getBasicProfile());
     setIsLogin(response.isSignedIn());
   };
+
   React.useEffect(() => {
-    if (window.gapi) {
-      window.gapi.load('auth2', async () => {
-        const gAuth = window.gapi.auth2;
-        await gAuth.init();
-        if (gAuth.getAuthInstance()) {
-          setIsLogin(gAuth.getAuthInstance().isSignedIn.get());
-        }
+    window.init = () => {
+      window.gapi.load('auth2', function () {
+        window.gapi.auth2.init();
       });
     }
   }, []);
@@ -28,7 +26,6 @@ const User = (props: any) => {
     if (isLogin) {
       const gAuth = window.gapi.auth2;
       const currentUser = gAuth.getAuthInstance().currentUser.get().getBasicProfile();
-      debugger;
       setCurrentUser(currentUser);
     }
   }, [isLogin]);
